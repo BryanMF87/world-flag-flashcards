@@ -2,29 +2,40 @@
 
 // Add random flag to page
 
-let countryList = ["afghanistan", "albania","algeria","andorra","angola","anguilla","antigua and barbuda","argentina","armenia","aruba","australia","austria","azerbaijan","the bahamas","bahrain","bangladesh","barbados","belarus","belgium","belize","benin","bermuda","bhutan","bolivia","bosnia and herzegovina","botswana","brazil","british virgin islands","brunei","bulgaria","burkina faso","burundi","cambodia","cameroon","cabo verde","the cayman islands","chad","chile","china","colombia","democratic republic of congo","the cook islands","costa rica","côte d'ivoire","croatia","cuba","cyprus","czechia","denmark","djibouti","dominica","dominican republic","ecuador","egypt","el salvador","equatorial guinea","estonia","ethiopia","the falkland islands","the faroe islands","fiji","finland","france","french polynesia","the french southern territories","gabon","gambia","georgia","germany","ghana","gibraltar","greece","greenland","grenada","guam","guatemala","guernsey","guinea","guinea-bissau","guyana","haiti","honduras","hong kong","hungary","iceland","india","indonesia","iran","iraq","ireland","isle of man","israel","italy","jamaica","japan","jersey","jordan","kazakhstan","kenya","kuwait","kyrgyzstan","laos","latvia","lebanon","lesotho","liberia","libya","liechtenstein","lithuania","luxembourg","macau","republic of north macedonia","madagascar","malawi","malaysia","maldives","mali","malta","mauritania","mauritius","mexico","moldova","monaco","mongolia","montenegro","montserrat","morocco","mozambique","namibia","nepal","netherlands","new caledonia","new zealand","nicaragua","niger","nigeria","norway","oman","pakistan","palestine","panama","papua new guinea","paraguay","peru","philippines","poland","portugal","puerto rico","qatar","réunion","romania","russian federation","rwanda","saint pierre and miquelon","samoa","san marino","saudi arabia","senegal","serbia","seychelles","sierra leone","singapore","slovakia","slovenia","south africa","south korea","spain","sri lanka","saint kitts and nevis","saint lucia","saint vincent and the grenadines","saint lucia","sudan","suriname","swaziland","sweden","switzerland","syria","taiwan","tajikistan","tanzania","thailand","Timor-leste","togo","tonga","trinidad and tobago","tunisia","turkey","turkmenistan","the turks and caicos islands","uganda","ukraine","united arab emirates","the united kingdom of great britain and northern ireland","uruguay","uzbekistan","venezuela","vietnam","virgin islands (us)","yemen","zambia","zimbabwe"];
+let countryList = ["Afghanistan", "Albania","Algeria","Andorra","Angola","Anguilla","Antigua and Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan",
+                    "The Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia and Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei Darussalam","Bulgaria","Burkina Faso","Burundi",
+                    "Cambodia","Cameroon","Cabo Verde","The Cayman Islands","Chad","Chile","China","Colombia","Democratic Republic of Congo","The Cook Islands","Costa Rica","Côte D'Ivoire","Croatia","Cuba","Cyprus","Czechia",
+                    "Denmark","Djibouti","Dominica","Dominican Republic",
+                    "Ecuador","Egypt","El Salvador","Equatorial Guinea","Estonia","Ethiopia",
+                    "The Falkland Islands","The Faroe Islands","Fiji","Finland","France","French Polynesia","The French Southern Territories",
+                    "Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea-Bissau","Guyana",
+                    "Haiti","Honduras","Hong Kong","Hungary",
+                    "Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy",
+                    "Jamaica","Japan","Jersey","Jordan",
+                    "Kazakhstan","Kenya","Kuwait","Kyrgyzstan",
+                    "Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg",
+                    "Macau","Republic of North Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Mauritania","Mauritius","Mexico","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique",
+                    "Namibia","Nepal","Netherlands","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Norway",
+                    "Oman",
+                    "Pakistan","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico",
+                    "Qatar",
+                    "Réunion","Romania","Russian Federation","Rwanda",
+                    "Saint Pierre and Miquelon","Samoa","San Marino","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","South Africa","South Korea","Spain","Sri Lanka","Saint Kitts and Nevis","Saint Lucia","Saint Vincent and the Grenadines","Saint Lucia","Sudan","Suriname","Eswatini","Sweden","Switzerland","Syrian Arab Republic",
+                    "Taiwan","Tajikistan","Tanzania","Thailand","Timor-Leste","Togo","Tonga","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan","The Turks and Caicos Islands",
+                    "Uganda","Ukraine","United Arab Emirates","The United Kingdom of Great Britain and Northern Ireland","Uruguay","Uzbekistan",
+                    "Venezuela","Vietnam","US Virgin Islands",
+                    "Yemen",
+                    "Zambia","Zimbabwe"];
 let selectedCountry;
 const flag = document.querySelector(".flag");
-let usedCountries = [];
 
 const getRandomFlag = () => {
     selectedCountry = countryList[Math.floor(Math.random()*countryList.length)];
     flag.src = `https://countryflagsapi.com/png/${selectedCountry}`;
-    usedCountries.unshift(selectedCountry);
     getPossibleAnswers();
 
     console.log(selectedCountry);
 };
-
-const checkAnswer = (answer) => {
-    // const choice = document.getElementsByClassName('choice').disabled = true;
-    answer == usedCountries[0] // right answer always pushed to usedCountries
-    ? displayOutcome('correct')
-    : displayOutcome('wrong');
-    console.log(usedCountries)
-};
-
-
 
 // Add possible answers to page
 
@@ -36,9 +47,11 @@ const getPossibleAnswers = () => {
     possibleAnswerArray.push(selectedCountry);
 
     while(possibleAnswerArray.length < 3) {
-        possibleAnswerArray.push( 
-            countryList[Math.floor(Math.random()*countryList.length)]
-        );
+        let possibleAnswer = countryList[Math.floor(Math.random()*countryList.length)]
+        
+        // only add possible answer if it isn't already used this round
+        !possibleAnswerArray.includes(possibleAnswer) &&
+            possibleAnswerArray.push(possibleAnswer);
     }
 
     possibleAnswerArray.sort();
@@ -53,22 +66,21 @@ const getPossibleAnswers = () => {
 };
 
 
-
 // Display the result
 
 const outcome = document.querySelector('.outcome');
 
-let displayOutcome = (result) => {
-    outcome.innerHTML = usedCountries[0];
+const checkAnswer = (answer) => {    
+    outcome.innerHTML = selectedCountry
     outcome.style.display = 'block';
-    if (result === 'correct') {
+    
+    if (answer == selectedCountry) {
         outcome.style.background = 'var(--green)';
-    } else if (result === 'wrong') {
+    } else if (answer !== selectedCountry) {
         outcome.style.background = 'var(--red)';
     }
-    updateScore(result);
-}
-
+    updateScore(answer);
+};
 
 
 // Update the score
@@ -81,11 +93,11 @@ let displayOutcome = (result) => {
     correct.innerHTML =  `${correctScore} right`;
     wrong.innerHTML = `${wrongScore} wrong`;
 
-const updateScore = (result) => {
-    if (result === 'correct') {
+const updateScore = (answer) => {
+    if (answer == selectedCountry) {
         correctScore++;
         correct.innerHTML = `${correctScore} right`;
-    } else if (result === 'wrong') {
+    } else if (answer !== selectedCountry) {
         wrongScore++
         wrong.innerHTML = `${wrongScore} wrong`;
     }

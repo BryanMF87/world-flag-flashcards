@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/style.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/d25584b795.js" crossorigin="anonymous"></script>
+    <title>World flag flashcard app</title>
+</head>
+<body>
+
+    <main>
+        <h1>World Flags</h1>
+        <h2>Flashcard App</h2>
+
+        <div class="score">
+            <span class="correct"></span>
+            <span class="wrong"></span>
+            <span class="total">195 total</span>
+        </div>
+
+        <div class="display">
+            <div class="outcome"></div>
+            <!-- source set by javascript -->
+            <img class="flag" 
+                 alt="flags of the world"
+                 crossorigin="anonymous"
+            />
+        </div>
+
+        <ul class="user-input"></ul>
+
+        <button onClick="reset()" class="reset">Reset Game</button>
+    </main>
+
+    <footer>Built with love by Bryan Fink</footer>
+
+    <script src="/script.js"></script>
+</body>
+</html>

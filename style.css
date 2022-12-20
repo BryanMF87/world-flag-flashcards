@@ -43,7 +43,7 @@ main {
     justify-content: center;
     text-align: center;
     width: 100%;
-    max-width: 400px;
+    max-width: 25rem;
     margin: 0 auto;
     box-sizing: border-box;
 }
@@ -53,7 +53,7 @@ main {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    max-width: 320px;
+    max-width: 20rem;
     margin: 0 auto;
 }
 
@@ -85,19 +85,19 @@ main {
         background-size: cover;
         background-repeat: no-repeat;
         width: 100%;
-        max-width: 320px;
+        max-width: 20rem;
         height: auto;
         margin: 0 auto;
         padding: 0;
         display: flex;
         align-items: center;
-        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0rem .063rem .25rem;
         z-index: 99;
     }
 
     .outcome {
         display: none;
-        border: 3px solid white;
+        border: .188rem solid white;
         color: white;
         width: fit-content;
         padding: .85rem 1.25rem;
@@ -116,7 +116,7 @@ main {
     display: flex;
     flex-direction: column;
     gap: .5rem;
-    width: 320px;
+    width: 20rem;
     margin: 0 auto;
 }
 
@@ -127,7 +127,7 @@ main {
 
     .user-input button {
         background: white;
-        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0rem .063rem .25rem;
         width: 100%;
         text-align: start;
     }
@@ -159,7 +159,7 @@ footer {
     left: 0;
     width: 100%;
     text-align: center;
-    border-top: solid .5px var(--grey-2);
+    border-top: solid .031rem var(--grey-2);
     background: white;
     color: var(--grey-3);
     padding: 1rem 0;

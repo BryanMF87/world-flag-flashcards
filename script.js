@@ -2,28 +2,29 @@
 
 // Add random flag to page
 
-let countryList = ["Afghanistan", "Albania","Algeria","Andorra","Angola","Anguilla","Antigua and Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan",
-                    "The Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia and Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei Darussalam","Bulgaria","Burkina Faso","Burundi",
-                    "Cambodia","Cameroon","Cabo Verde","The Cayman Islands","Chad","Chile","China","Colombia","Democratic Republic of Congo","The Cook Islands","Costa Rica","Côte D'Ivoire","Croatia","Cuba","Cyprus","Czechia",
+let countryList = ["Afghanistan", "Albania","Algeria","American Samoa","Andorra","Angola","Anguilla","Antarctica","Antigua and Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan",
+                    "The Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia and Herzegovina","Bonaire","Botswana","Brazil","British Virgin Islands","Brunei Darussalam","Bulgaria","Burkina Faso","Burundi",
+                    "Cabo Verde","Cambodia","Cameroon","Canada","The Cayman Islands","The Cental African Republic","Chad","Chile","China","Christmas Island","The Coco Islands","Colombia","Congo","Democratic Republic of Congo","The Cook Islands","Costa Rica","Côte D'Ivoire","Croatia","Cuba","Curaçao","Cyprus","Czechia",
                     "Denmark","Djibouti","Dominica","Dominican Republic",
-                    "Ecuador","Egypt","El Salvador","Equatorial Guinea","Estonia","Ethiopia",
-                    "The Falkland Islands","The Faroe Islands","Fiji","Finland","France","French Polynesia","The French Southern Territories",
-                    "Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea-Bissau","Guyana",
-                    "Haiti","Honduras","Hong Kong","Hungary",
+                    "Ecuador","Egypt","El Salvador","England","Eritrea","Equatorial Guinea","Estonia","Ethiopia","European Union",
+                    "The Falkland Islands","The Faroe Islands","Fiji","Finland","France","French Guiana","French Polynesia","The French Southern Territories",
+                    "Gabon","Gambia","Gaudeloupe","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea-Bissau","Guyana",
+                    "Haiti","Heard Island and McDonald Islands","The Holy See","Honduras","Hong Kong","Hungary",
                     "Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy",
                     "Jamaica","Japan","Jersey","Jordan",
-                    "Kazakhstan","Kenya","Kuwait","Kyrgyzstan",
+                    "Kazakhstan","Kenya","Kosovo","Kuwait","Kyrgyzstan",
                     "Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg",
-                    "Macau","Republic of North Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Mauritania","Mauritius","Mexico","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique",
-                    "Namibia","Nepal","Netherlands","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Norway",
+                    "Macao","Republic of North Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","The Marshall Islands","martinique","Mauritania","Mauritius","Mexico","The Federated States of Micronesia","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar",
+                    "Namibia","Nepal","Netherlands","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Northern Ireland","Norway",
                     "Oman",
                     "Pakistan","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico",
                     "Qatar",
                     "Réunion","Romania","Russian Federation","Rwanda",
-                    "Saint Pierre and Miquelon","Samoa","San Marino","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","South Africa","South Korea","Spain","Sri Lanka","Saint Kitts and Nevis","Saint Lucia","Saint Vincent and the Grenadines","Saint Lucia","Sudan","Suriname","Eswatini","Sweden","Switzerland","Syrian Arab Republic",
+                    "Saint Barthélemy","Saint Pierre and Miquelon","Saint Vincent and the Grenadines","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Scotland","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","South Africa","The Republic Of Korea","North Korea","Spain","Sri Lanka","Saint Kitts and Nevis","Saint Lucia","Saint Vincent and the Grenadines","Saint Lucia","Sudan","Suriname","Eswatini","Sweden","Switzerland","Syrian Arab Republic",
                     "Taiwan","Tajikistan","Tanzania","Thailand","Timor-Leste","Togo","Tonga","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan","The Turks and Caicos Islands",
-                    "Uganda","Ukraine","United Arab Emirates","The United Kingdom of Great Britain and Northern Ireland","Uruguay","Uzbekistan",
+                    "Uganda","Ukraine","United Arab Emirates","The United Kingdom","The United States of America","Uruguay","Uzbekistan",
                     "Venezuela","Vietnam","US Virgin Islands",
+                    "Wales","Western Sahara",
                     "Yemen",
                     "Zambia","Zimbabwe"];
 let selectedCountry;
@@ -89,6 +90,7 @@ const checkAnswer = (answer) => {
     let wrongScore = 0;
     let correct = document.querySelector('.correct');
     let wrong = document.querySelector('.wrong');
+    document.querySelector('.options-total').innerHTML = `${countryList.length} options`;
 
     correct.innerHTML =  `${correctScore} right`;
     wrong.innerHTML = `${wrongScore} wrong`;

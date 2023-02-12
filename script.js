@@ -1,14 +1,10 @@
-
-
-// Add random flag to page
-
-let countryList = ["Afghanistan", "Albania","Algeria","American Samoa","Andorra","Angola","Anguilla","Antarctica","Antigua and Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan",
+const countryList = ["Afghanistan", "Albania","Algeria","American Samoa","Andorra","Angola","Anguilla","Antarctica","Antigua and Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan",
                     "The Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia and Herzegovina","Bonaire","Botswana","Brazil","British Virgin Islands","Brunei Darussalam","Bulgaria","Burkina Faso","Burundi",
-                    "Cabo Verde","Cambodia","Cameroon","Canada","The Cayman Islands","The Cental African Republic","Chad","Chile","China","Christmas Island","The Coco Islands","Colombia","Congo","Democratic Republic of Congo","The Cook Islands","Costa Rica","Côte D'Ivoire","Croatia","Cuba","Curaçao","Cyprus","Czechia",
+                    "Cabo Verde","Cambodia","Cameroon","Canada","The Cayman Islands","The Central African Republic","Chad","Chile","China","Christmas Island","The Cocos Islands","Colombia","Congo","Democratic Republic of Congo","The Cook Islands","Costa Rica","Côte D'Ivoire","Croatia","Cuba","Curaçao","Cyprus","Czechia",
                     "Denmark","Djibouti","Dominica","Dominican Republic",
                     "Ecuador","Egypt","El Salvador","England","Eritrea","Equatorial Guinea","Estonia","Ethiopia","European Union",
                     "The Falkland Islands","The Faroe Islands","Fiji","Finland","France","French Guiana","French Polynesia","The French Southern Territories",
-                    "Gabon","Gambia","Gaudeloupe","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea-Bissau","Guyana",
+                    "Gabon","Gambia","Guadeloupe","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea-Bissau","Guyana",
                     "Haiti","Heard Island and McDonald Islands","The Holy See","Honduras","Hong Kong","Hungary",
                     "Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy",
                     "Jamaica","Japan","Jersey","Jordan",
@@ -27,15 +23,22 @@ let countryList = ["Afghanistan", "Albania","Algeria","American Samoa","Andorra"
                     "Wales","Western Sahara",
                     "Yemen",
                     "Zambia","Zimbabwe"];
+
+// Add random flag to page
+
 let selectedCountry;
 const flag = document.querySelector(".flag");
 
-const getRandomFlag = () => {
+const getRandomFlag = async () => {
     selectedCountry = countryList[Math.floor(Math.random()*countryList.length)];
-    flag.src = `https://countryflagsapi.com/png/${selectedCountry}`;
-    getPossibleAnswers();
 
-    console.log(selectedCountry);
+    await fetch(`https://countryflagsapi.com/png/${selectedCountry}`)
+        .then(response => {
+            console.log(response)
+            flag.src = response.url
+        });
+
+        getPossibleAnswers()
 };
 
 // Add possible answers to page
@@ -65,6 +68,7 @@ const getPossibleAnswers = () => {
                 </li>`
     }).join('');
 };
+
 
 
 // Display the result

@@ -1,28 +1,29 @@
-const countryList = ["Afghanistan", "Albania","Algeria","American Samoa","Andorra","Angola","Anguilla","Antarctica","Antigua and Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan",
-                    "The Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia and Herzegovina","Bonaire","Botswana","Brazil","British Virgin Islands","Brunei Darussalam","Bulgaria","Burkina Faso","Burundi",
-                    "Cabo Verde","Cambodia","Cameroon","Canada","The Cayman Islands","The Central African Republic","Chad","Chile","China","Christmas Island","The Cocos Islands","Colombia","Congo","Democratic Republic of Congo","The Cook Islands","Costa Rica","Côte D'Ivoire","Croatia","Cuba","Curaçao","Cyprus","Czechia",
-                    "Denmark","Djibouti","Dominica","Dominican Republic",
-                    "Ecuador","Egypt","El Salvador","England","Eritrea","Equatorial Guinea","Estonia","Ethiopia","European Union",
-                    "The Falkland Islands","The Faroe Islands","Fiji","Finland","France","French Guiana","French Polynesia","The French Southern Territories",
-                    "Gabon","Gambia","Guadeloupe","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea-Bissau","Guyana",
-                    "Haiti","Heard Island and McDonald Islands","The Holy See","Honduras","Hong Kong","Hungary",
-                    "Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy",
-                    "Jamaica","Japan","Jersey","Jordan",
-                    "Kazakhstan","Kenya","Kosovo","Kuwait","Kyrgyzstan",
-                    "Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg",
-                    "Macao","Republic of North Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","The Marshall Islands","martinique","Mauritania","Mauritius","Mexico","The Federated States of Micronesia","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar",
-                    "Namibia","Nepal","Netherlands","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Northern Ireland","Norway",
-                    "Oman",
-                    "Pakistan","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico",
-                    "Qatar",
-                    "Réunion","Romania","Russian Federation","Rwanda",
-                    "Saint Barthélemy","Saint Pierre and Miquelon","Saint Vincent and the Grenadines","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Scotland","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","South Africa","The Republic Of Korea","North Korea","Spain","Sri Lanka","Saint Kitts and Nevis","Saint Lucia","Saint Vincent and the Grenadines","Saint Lucia","Sudan","Suriname","Eswatini","Sweden","Switzerland","Syrian Arab Republic",
-                    "Taiwan","Tajikistan","Tanzania","Thailand","Timor-Leste","Togo","Tonga","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan","The Turks and Caicos Islands",
-                    "Uganda","Ukraine","United Arab Emirates","The United Kingdom","The United States of America","Uruguay","Uzbekistan",
-                    "Venezuela","Vietnam","US Virgin Islands",
-                    "Wales","Western Sahara",
-                    "Yemen",
-                    "Zambia","Zimbabwe"];
+const countryList = 
+["Afghanistan", "Albania","Algeria","American Samoa","Andorra","Angola","Anguilla","Antarctica","Antigua and Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan",
+"Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia and Herzegovina","Bonaire","Botswana","Brazil","British Virgin Islands","Brunei Darussalam","Bulgaria","Burkina Faso","Burundi",
+"Cabo Verde","Cambodia","Cameroon","Canada","Cayman Islands","Central African Republic","Chad","Chile","China","Christmas Island","Cocos Islands","Colombia","Congo","Democratic Republic of Congo","Cook Islands","Costa Rica","Côte D'Ivoire","Croatia","Cuba","Curaçao","Cyprus","Czechia",
+"Denmark","Djibouti","Dominica","Dominican Republic",
+"Ecuador","Egypt","El Salvador","England","Eritrea","Equatorial Guinea","Estonia","Ethiopia","European Union",
+"Falkland Islands","Faroe Islands","Fiji","Finland","France","French Guiana","French Polynesia","French Southern Territories",
+"Gabon","Gambia","Guadeloupe","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea-Bissau","Guyana",
+"Haiti","Heard Island and McDonald Islands","Holy See","Honduras","Hong Kong","Hungary",
+"Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy",
+"Jamaica","Japan","Jersey","Jordan",
+"Kazakhstan","Kenya","Kosovo","Kuwait","Kyrgyzstan",
+"Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg",
+"Macao","Republic of North Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","martinique","Mauritania","Mauritius","Mexico","The Federated States of Micronesia","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar",
+"Namibia","Nepal","Netherlands","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Northern Ireland","Norway",
+"Oman",
+"Pakistan","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico",
+"Qatar",
+"Réunion","Romania","Russian Federation","Rwanda",
+"Saint Barthélemy","Saint Pierre and Miquelon","Saint Vincent and the Grenadines","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Scotland","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","South Africa","Republic Of Korea","North Korea","Spain","Sri Lanka","Saint Kitts and Nevis","Saint Lucia","Saint Vincent and the Grenadines","Saint Lucia","Sudan","Suriname","Eswatini","Sweden","Switzerland","Syrian Arab Republic",
+"Taiwan","Tajikistan","Tanzania","Thailand","Timor-Leste","Togo","Tonga","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan","Turks and Caicos Islands",
+"Uganda","Ukraine","United Arab Emirates","United Kingdom","United States of America","Uruguay","Uzbekistan",
+"Venezuela","Vietnam","US Virgin Islands",
+"Wales","Western Sahara",
+"Yemen",
+"Zambia","Zimbabwe"];
 
 // Add random flag to page
 
@@ -32,12 +33,11 @@ const flag = document.querySelector(".flag");
 const getRandomFlag = async () => {
     selectedCountry = countryList[Math.floor(Math.random()*countryList.length)];
 
-    await fetch(`https://countryflagsapi.com/png/${selectedCountry}`)
-        .then(response => {
-            flag.src = response.url
-        });
+    await fetch(`https://restcountries.com/v3.1/name/${selectedCountry}`)
+        .then((response) => response.json())
+        .then((data) => flag.src = data[0].flags.png);
 
-        getPossibleAnswers()
+    getPossibleAnswers()
 };
 
 // Add possible answers to page

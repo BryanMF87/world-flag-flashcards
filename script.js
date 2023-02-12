@@ -34,7 +34,6 @@ const getRandomFlag = async () => {
 
     await fetch(`https://countryflagsapi.com/png/${selectedCountry}`)
         .then(response => {
-            console.log(response)
             flag.src = response.url
         });
 
